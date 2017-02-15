@@ -34,8 +34,11 @@ const config = {
       {test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader']},
       {test: /\.json/, exclude: /node_modules/, use: ['json-loader']},
       {test: /\.html/, use: ['html-loader']},
-      {test: /\.css$/, use: ExtractTextPlugin.extract('css-loader')},
-      {test: /\.less$/, use: ExtractTextPlugin.extract(['css-loader', 'less-loader'])},
+      {test: /\.css$/, use: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader']})},
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({fallback: 'style-loader', use: ['css-loader', 'less-loader']})
+      },
       {test: /\.png$/, loader: 'url?limit=8192&mimetype=image/png'},
       {test: /\.jpe?g$/, loader: 'url?limit=8192&mimetype=image/jpg'},
       {test: /\.gif$/, loader: 'url?limit=8192&mimetype=image/gif'},
@@ -53,7 +56,6 @@ const config = {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin('vendor'),
     new ExtractTextPlugin('[name].css')
   ],
