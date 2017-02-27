@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const path = require('path')
 
 const webpackMerge = require('webpack-merge')
 
@@ -42,7 +43,13 @@ const config = {
       PRODUCTION: false,
       DEVELOPMENT: true
     })
-  ]
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'build'),
+    hot: true,
+    historyApiFallback: true,
+    proxy: {}
+  }
 }
 
 module.exports = webpackMerge(baseConfig, config)

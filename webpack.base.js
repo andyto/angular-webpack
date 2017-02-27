@@ -6,7 +6,15 @@ const config = {
     app: [
       './app/index.js'
     ],
-    vendor: ['babel-polyfill', 'vendor/index.js']
+    vendor: [
+      'babel-polyfill',
+      'angular',
+      'angular-ui-router',
+      'angular-ui-bootstrap',
+      'angular-local-storage',
+      'oclazyload',
+      './vendor/index.js'
+    ]
   },
   context: path.resolve(__dirname, 'src'),
   output: {
