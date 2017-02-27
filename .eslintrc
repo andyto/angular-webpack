@@ -1,8 +1,5 @@
 {
   "extends": [
     "standard"
-  ],
-  "plugins": [
-    "syntax-dynamic-import"
   ]
 }
